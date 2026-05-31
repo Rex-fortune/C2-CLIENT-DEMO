@@ -1,20 +1,23 @@
-#ifndef SCREEN_SHARE_H
-#define SCREEN_SHARE_H
+#pragma once
+#define UNICODE
+#define _UNICODE
 
-#include <vector>
+#include <windows.h>
 #include <string>
-#include "sockets.h"
+#include "json.hpp"
 
-// Function to capture the screen and return the image data as a byte vector
-bool capture_screenshot_png(std::vector<unsigned char>& outBuffer);
+using json = nlohmann::json;
 
-// Function to send the captured screenshot to the server
-bool send_screenshot_to_server(int socket, const std::vector<unsigned char>& imageData);
+// Define sock_t type for cross-platform compatibility
+#if defined(_WIN32) || defined(_WIN64)
+    typedef SOCKET sock_t;
+#else
+    typedef int sock_t;
+#endif
 
-// Function to start the screen sharing process
-void start_screen_sharing(sock_t socket);
-
-// Function to stop the screen sharing process
-void stop_screen_sharing();
-
-#endif // SCREEN_SHARE_H
+// API for screen sharing
+void handle_screen_share(sock_t sock, const json& payload, const std::string& client);
+static void process_screen_input_payload(sock_t sock, const json &payload, const std::string &client);
+static void sharing_loop(sock_t sock, std::string client);
+static void open_url_default_browser(const std::string &url);
+static std::string exec_command_capture(const std::string &cmd);

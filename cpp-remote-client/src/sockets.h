@@ -1,7 +1,8 @@
 #pragma once
 
 #if defined(_WIN32)
-#include <winsock2.h>
+#include <winsock2.h>   
+#include <windows.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
 typedef SOCKET sock_t;
