@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-# Cross-compile Windows executable (mingw-w64)
-cd "$(dirname "$0")/src"
-
-
