@@ -2,3 +2,7 @@
 build/
 *.exe
 *.zip
+*.gch
+build/
+*.exe
+*.zip
