@@ -1,1 +1,0 @@
-#define IDR_PDFFILE 101
